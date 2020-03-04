@@ -173,12 +173,11 @@ class addDataController extends Controller
                     ]);
                 }
 
-            }else{
-                return redirect()->back()->with('status', 'Failed');
             }
-            return redirect()->back()->with('status', 'Saved Successfully');
+
 
         }
+        return redirect()->back()->with('status', 'Saved Successfully');
 
     }
 

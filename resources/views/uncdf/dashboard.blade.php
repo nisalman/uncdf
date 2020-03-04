@@ -203,16 +203,39 @@
 <br>
 <hr>
 <div class="col-lg-12">
-    <div style="text-align: center">
-        <table border="1px solid black" >
-            <tr>
-                <td>Line chart</td>
-            </tr>
-        </table>
+    <div class="card" style="border:1px solid #adb5bd; margin-top: 20px;">
+        <div class="card-header" style="text-align: center; background-color: #1d68a7; color: white">
+            Transaction Overview
+        </div>
+        <div class="card-body">
+            <div style="width:100%">
+                <canvas id="linechart"></canvas>
+            </div>
+        </div>
     </div>
-
-    <div style="width:100%;">
-        <canvas id="linechart"></canvas>
+</div>
+<div class="col-lg-12">
+    <div class="card" style="border:1px solid #adb5bd; margin-top: 20px;">
+        <div class="card-header" style="text-align: center; background-color: #1d68a7; color: white">
+            Transaction Overview
+        </div>
+        <div class="card-body">
+            <div style="width:100%">
+                <canvas id="linechart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="card" style="border:1px solid #adb5bd; margin-top: 20px;">
+        <div class="card-header" style="text-align: center; background-color: #1d68a7; color: white">
+            Transaction Overview
+        </div>
+        <div class="card-body">
+            <div style="width:100%">
+                <canvas id="linechart3"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 <div>
@@ -357,13 +380,12 @@
         new Chartist.Pie('#chart9', data1, options2);
 
     })
-
+    /*line chart 1 starts*/
     $(document).ready(function () {
         var date_format = @json($trans_form_date);
         var total_trans = @json($trans_total_count);
         var transamount = @json($trans_amount);
         var transuccess = @json($trans_successful_count);
-        console.log(transuccess);
         var canvas = document.getElementById("linechart");
         new Chart(canvas, {
             type: "line",
@@ -375,20 +397,11 @@
                         yAxisID: "A",
                         data: total_trans.reverse(),
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
                             'rgba(153, 102, 255, 0.2)',
-                            'rgba(255,15,227, 0.2)'
+
                         ],
                         borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgb(255,15,227)'
+                            'rgba(153, 102, 255,1)',
                         ],
                         borderWidth: 1
                     },
@@ -397,25 +410,16 @@
                         yAxisID: "B",
                         data: transamount.reverse(),
                         backgroundColor: [
-                            'rgba(133,255,121, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(78,18,192, 0.2)',
                             'rgba(255,75,0, 0.2)',
-                            'rgba(255,251,198, 0.2)'
                         ],
                         borderColor: [
-                            'rgb(133,255,121)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgb(78,18,192)',
-                            'rgb(255,75,0)',
-                            'rgb(255,251,198)'
+                            'rgb(255,75, 0)',
                         ],
                         borderWidth: 1
                     },
                     {
                         label: "Total Successfull Transaction",
+                        hidden:true,
                         yAxisID: "A",
                         data: transuccess.reverse(),
                         backgroundColor: [
@@ -427,12 +431,8 @@
                             'rgba(246,255,39, 0.2)'
                         ],
                         borderColor: [
-                            'rgb(255,31,9)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgb(78,18,192)',
                             'rgb(6,255,30)',
-                            'rgb(246,255,39)'
+
                         ],
                         borderWidth: 1
                     }
@@ -473,6 +473,173 @@
             }
         });
     })
+    /*line chart 1 starts*/
+
+
+    /*line chart 2 starts*/
+    $(document).ready(function () {
+        var date_format = @json($trans_form_date);
+        var sir_total_last7 = @json($sir_total_last7);
+        var tan_total_last7_count = @json($tan_total_last7_count);
+        var sir_total_last7_count = @json($sir_total_last7_count);
+        var tan_total_last7 = @json($tan_total_last7);
+        //console.log(tan_total_last7);
+        var canvas = document.getElementById("linechart2");
+        new Chart(canvas, {
+            type: "line",
+            data: {
+                labels: date_format.reverse(),
+                datasets: [
+                    {
+                        label: "Tangail Transaction Count",
+                        yAxisID: "A",
+                        data: tan_total_last7_count.reverse(),
+                        borderColor: [
+                            'rgba(153, 102, 255,1)',
+                        ],
+                        fill: false,
+                        borderWidth: 2
+                    },
+                    {
+                        label: "Sirahgonj Transaction Count",
+                        yAxisID: "A",
+                        data: sir_total_last7_count.reverse(),
+                        borderColor: [
+                            'rgb(6,255,30)',
+                        ],
+                        fill: false,
+                        borderWidth: 2
+                    },
+                    {
+                        label: "Tangail Total Transaction Amount",
+                        yAxisID: "B",
+                        data: tan_total_last7.reverse(),
+                        borderColor: [
+                            'rgb(255,75, 0)',
+                        ],
+                        fill: false,
+                        borderWidth: 2
+                    },
+                    {
+                        label: "Sirajgonj Total Transaction Amount",
+                        yAxisID: "B",
+                        data: sir_total_last7.reverse(),
+                        borderColor: [
+                            'rgb(255,247,16)',
+                        ],
+                        fill: false,
+                        borderWidth: 2
+                    },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            id: "A",
+                            type: "linear",
+                            position: "left",
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Count"
+                            },
+                            ticks: {
+                                max: 100,
+                                min: 0
+                            }
+                        },
+                        {
+                            id: "B",
+                            type: "linear",
+                            position: "right",
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Amount"
+                            },
+                            ticks: {
+                                max: 20000,
+                                min: 0
+                            }
+                        }
+                    ]
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(87,0,71)'
+                    }
+                }
+            }
+
+        });
+
+    })
+    /*line chart 2 end*/
+
+    /*line chart 3 starts*/
+    $(document).ready(function () {
+        var date_format = @json($trans_form_date);
+        var tan_total_last7_avg = @json($tan_total_last7_avg);
+        var sir_total_last7_avg = @json($sir_total_last7_avg);
+        console.log(tan_total_last7_avg);
+        var canvas = document.getElementById("linechart3");
+        new Chart(canvas, {
+            type: "line",
+            data: {
+                labels: date_format.reverse(),
+                datasets: [
+                    {
+                        label: "Tangail Transaction Average",
+                        yAxisID: "A",
+                        data: tan_total_last7_avg.reverse(),
+                        borderColor: [
+                            'rgba(153, 102, 255,1)',
+                        ],
+                        fill: false,
+                        borderWidth: 2
+                    },
+                    {
+                        label: "Sirahgonj Transaction Average",
+                        yAxisID: "A",
+                        data: sir_total_last7_avg.reverse(),
+                        borderColor: [
+                            'rgb(6,255,30)',
+                        ],
+                        fill: false,
+                        borderWidth: 2
+                    },
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            id: "A",
+                            type: "linear",
+                            position: "left",
+                            scaleLabel: {
+                                display: true,
+                                labelString: "Count"
+                            },
+                            ticks: {
+                                max: 1000,
+                                min: 0
+                            }
+                        }
+                    ]
+                },
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'rgb(87,0,71)'
+                    }
+                }
+            }
+
+        });
+
+    })
+    /*line chart 3 end*/
 
 </script>
 

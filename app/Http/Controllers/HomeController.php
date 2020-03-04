@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Javascript;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
+use PHPUnit\Framework\Constraint\Count;
 
 class HomeController extends Controller
 {
@@ -30,70 +31,163 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //return Carbon::now();
-         $trans_dates = DB::table('transactions')
+
+        $trans_dates = DB::table('transactions')
             ->select('trans_date')
             ->distinct()
-             ->limit(15)
-             ->orderByDesc('trans_date')
+            ->limit(15)
+            ->orderByDesc('trans_date')
             ->get();
 
-         //dd($trans_dates);
+        /*Last 7 days Tangail Transaction*/
 
-         $trans_last7=[]; //get last 7 days
-         for ($i=0;$i<count($trans_dates);$i++)
-         {
-             $trans_last7[$i]=$trans_dates[$i]->trans_date;
-         }
-
-        $trans_form_date=[]; // date formatting like: 30 Mar
-
-        for ($i=0;$i<count($trans_dates);$i++)
-        {
-            $yrdata= strtotime($trans_last7[$i]);
-            $trans_form_date[$i]=date("d M",  $yrdata);
+        $trans_last7 = []; //get last 7 days
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $trans_last7[$i] = $trans_dates[$i]->trans_date;
         }
 
-        $trans_amount=[]; //last 7 days total amount
+        $tan_total_last7 = [];
 
-        for ($i=0;$i<count($trans_dates);$i++)
-        {
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $tan_total_last7[$i] = DB::table('transactions')
+                ->select('transactions.amount')
+                ->join('onboard_mms', 'transactions.id_onboard_mm', '=', 'onboard_mms.id_onboard_mm')
+                ->where('onboard_mms.district_id', '=', 34)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('transactions.is_order_completed', '=', 1)
+                ->orderByDesc('transactions.trans_date')
+                ->sum('transactions.amount');
+        }
+
+        $tan_total_last7_avg = [];
+
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $tan_total_last7_average[$i] = DB::table('transactions')
+                ->select('transactions.amount')
+                ->join('onboard_mms', 'transactions.id_onboard_mm', '=', 'onboard_mms.id_onboard_mm')
+                ->where('onboard_mms.district_id', '=', 34)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('transactions.is_order_completed', '=', 1)
+                ->orderByDesc('transactions.trans_date')
+                ->avg('transactions.amount');
+
+            $tan_total_last7_avg[$i]=round($tan_total_last7_average[$i]);
+        }
+
+
+        $tan_total_last7_count = [];
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $tan_total_last7_count[$i] = DB::table('transactions')
+                ->select('transactions.amount')
+                ->join('onboard_mms', 'transactions.id_onboard_mm', '=', 'onboard_mms.id_onboard_mm')
+                ->where('onboard_mms.district_id', '=', 34)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('transactions.is_order_completed', '=', 1)
+                ->orderByDesc('transactions.trans_date')
+                ->count();
+        }
+        //dd($tan_total_last7_count);
+
+        $sir_total_last7_count = [];
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $sir_total_last7_count[$i] = DB::table('transactions')
+                ->select('transactions.amount')
+                ->join('onboard_mms', 'transactions.id_onboard_mm', '=', 'onboard_mms.id_onboard_mm')
+                ->where('onboard_mms.district_id', '=', 52)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('transactions.is_order_completed', '=', 1)
+                ->orderByDesc('transactions.trans_date')
+                ->count();
+        }
+        //dd($sir_total_last7_count);
+
+
+        /*Last 7 days Tangail Transaction end*/
+
+
+        /*Last 7 days Sirajgonj Transaction starts*/
+
+        $sir_total_last7 = [];
+
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $sir_total_last7[$i] = DB::table('transactions')
+                ->select('transactions.amount')
+                ->join('onboard_mms', 'transactions.id_onboard_mm', '=', 'onboard_mms.id_onboard_mm')
+                ->where('onboard_mms.district_id', '=', 52)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('transactions.is_order_completed', '=', 1)
+                ->orderByDesc('transactions.trans_date')
+                ->sum('transactions.amount');
+        }
+
+        $sir_total_last7_avg = [];
+
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $sir_total_last7_average[$i] = DB::table('transactions')
+                ->select('transactions.amount')
+                ->join('onboard_mms', 'transactions.id_onboard_mm', '=', 'onboard_mms.id_onboard_mm')
+                ->where('onboard_mms.district_id', '=', 52)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('transactions.is_order_completed', '=', 1)
+                ->orderByDesc('transactions.trans_date')
+                ->avg('transactions.amount');
+            $sir_total_last7_avg[$i]=round($sir_total_last7_average[$i]);
+        }
+
+
+        //dd($sir_total_last7_avg); // Sirajgong Last 15 days
+
+        /*Last 7 days Sirajgonj Transaction ends*/
+
+
+        $trans_last7 = []; //get last 7 days
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $trans_last7[$i] = $trans_dates[$i]->trans_date;
+        }
+
+        $trans_form_date = []; // date formatting like: 30 Mar
+
+        for ($i = 0; $i < count($trans_dates); $i++) {
+            $yrdata = strtotime($trans_last7[$i]);
+            $trans_form_date[$i] = date("d M", $yrdata);
+        }
+
+        $trans_amount = []; //last 7 days total amount
+
+        for ($i = 0; $i < count($trans_dates); $i++) {
             $trans_amount[$i] = DB::table('transactions')
                 ->select('amount')
-                ->where('trans_date',$trans_dates[$i]->trans_date)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
                 ->sum('amount');
         }
 
 
-        $trans_successful=[]; //last 7 days successfull transaction
+        $trans_successful = []; //last 7 days successfull transaction
 
-        for ($i=0;$i<count($trans_dates);$i++)
-        {
+        for ($i = 0; $i < count($trans_dates); $i++) {
             $trans_successful[$i] = DB::table('transactions')
                 ->select('amount')
-                ->where('trans_date',$trans_dates[$i]->trans_date)
-                ->where('is_order_completed',1)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('is_order_completed', 1)
                 ->sum('amount');
         }
 
-        $trans_total_count=[]; //last 7 days number of total transaction
+        $trans_total_count = []; //last 7 days number of total transaction
 
-        for ($i=0;$i<count($trans_dates);$i++)
-        {
+        for ($i = 0; $i < count($trans_dates); $i++) {
             $trans_total_count[$i] = DB::table('transactions')
-                ->where('trans_date',$trans_dates[$i]->trans_date)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
                 ->count();
         }
         //dd($trans_total_count);
 
-        $trans_successful_count=[]; //last 7 days number of successfull transaction
+        $trans_successful_count = []; //last 7 days number of successfull transaction
 
-        for ($i=0;$i<count($trans_dates);$i++)
-        {
+        for ($i = 0; $i < count($trans_dates); $i++) {
             $trans_successful_count[$i] = DB::table('transactions')
                 ->select('amount')
-                ->where('trans_date',$trans_dates[$i]->trans_date)
-                ->where('is_order_completed',1)
+                ->where('trans_date', $trans_dates[$i]->trans_date)
+                ->where('is_order_completed', 1)
                 ->count('amount');
         }
         //dd($trans_successful_count);
@@ -157,11 +251,9 @@ class HomeController extends Controller
             $sirajgonj_active_percentage = 'None';
             $sirajgonj_inactive_percentage = 'None';
         }
-
         /*graph data retrive for Sirajgonj District Ends*/
 
 
-        //dd(session()->all());
         return view('home', compact(
             'av_districts',
             'inactive_percentage',
@@ -183,7 +275,13 @@ class HomeController extends Controller
             'trans_amount',
             'trans_successful',
             'trans_total_count',
-            'trans_successful_count'
+            'trans_successful_count',
+            'tan_total_last7',
+            'sir_total_last7',
+            'tan_total_last7_count',
+            'sir_total_last7_count',
+            'tan_total_last7_avg',
+            'sir_total_last7_avg'
         ));
     }
 }
