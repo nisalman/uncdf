@@ -11,15 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+
 
 Auth::routes();
 
 Route::get('transaction/availabledistricts', 'transactionController@getavailabledistricts')->middleware('auth');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');;
-
+Route::get('/checkupdate','HomeController@checkupdate');
 
 Route::resource('data','addDataController')->middleware('auth');;
 Route::resource('transaction','transactionController')->middleware('auth');
@@ -42,6 +41,16 @@ Route::get('transaction/getnumoftrans/{id}','transactionController@numberOfTrans
 Route::get('data/totalmm/{id}','addDataController@getTotalMm');
 Route::get('data/activemm/{id}','addDataController@getActiveMm');
 
+
+
+Route::get('home/getxbyid/{id}','EkshopliveController@getEkshopTransaction');
+Route::get('home/getTargetByDate/{id}','EkshopliveController@getTargatedTransaction');
+
+
+
+Route::get('home/getTargetByDis/','EkshopliveController@getAlldistrictTarget');
+
+Route::post('home/getvaluebydate','DateResultController@dataRangeValue')->name('getvalue.date');
 
 
 /*Routes for dependency dropdown for transaction end*/

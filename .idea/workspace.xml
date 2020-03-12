@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39c1f5d5-7062-47ac-bb66-12f728f6e62a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/uncdf.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DB/uncdf.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/addDataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/addDataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/transactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/transactionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/uncdf/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/uncdf/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +138,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -137,12 +146,12 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Fampp\htdocs\data\database\factories" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\Fampp\htdocs\data\vendor\monolog" />
       <recent name="F:\Fampp\htdocs\data\app\Http" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Fampp\htdocs\data\database\factories" />
     </key>
   </component>
   <component name="RunManager">
@@ -167,7 +176,18 @@
       <workItem from="1583033464521" duration="27760000" />
       <workItem from="1583120179015" duration="28797000" />
       <workItem from="1583209159981" duration="24533000" />
-      <workItem from="1583293392512" duration="12657000" />
+      <workItem from="1583293392512" duration="13728000" />
+      <workItem from="1583309545202" duration="11297000" />
+      <workItem from="1583338271783" duration="1273000" />
+      <workItem from="1583378861026" duration="31172000" />
+      <workItem from="1583640193729" duration="29498000" />
+      <workItem from="1583726485273" duration="23854000" />
+      <workItem from="1583812447287" duration="22592000" />
+      <workItem from="1583840718622" duration="5183000" />
+      <workItem from="1583897765098" duration="34379000" />
+      <workItem from="1583935409764" duration="1620000" />
+      <workItem from="1583985488717" duration="342000" />
+      <workItem from="1583985834960" duration="370000" />
     </task>
     <servers />
   </component>
@@ -175,18 +195,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="273" y="30" key="#Deployment" timestamp="1583307149380">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="273" y="30" key="#Deployment/0.0.1366.728@0.0.1366.728" timestamp="1583307149380" />
     <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583033410380">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1583033410380" />
-    <state x="413" y="122" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1583055643464">
+    <state x="413" y="122" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1583317280075">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="122" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1583055643464" />
-    <state x="463" y="122" key="FileChooserDialogImpl" timestamp="1583140086348">
+    <state x="413" y="122" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1583317280075" />
+    <state x="463" y="122" key="FileChooserDialogImpl" timestamp="1583985829527">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583140086348" />
+    <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583985829527" />
     <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1583033561739">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -207,22 +231,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="517" y="295" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1583122983254" />
-    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1583059457715">
+    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1583928739143">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1583059457715" />
+    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1583928739143" />
     <state x="390" y="120" width="586" height="488" key="find.popup" timestamp="1583060517563">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="390" y="120" width="586" height="488" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1583060517563" />
+    <state x="499" y="105" key="ftp.server.browser" timestamp="1583307144339">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="499" y="105" key="ftp.server.browser/0.0.1366.728@0.0.1366.728" timestamp="1583307144338" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1582785151102">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1582785151102" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1583060508185">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1583841425757">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583060508185" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583841425757" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -231,6 +259,16 @@
           <url>file://$PROJECT_DIR$/resources/views/transaction/create.blade.php</url>
           <line>15</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/uncdf/dashboard.blade.php</url>
+          <line>208</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/home.blade.php</url>
+          <line>138</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

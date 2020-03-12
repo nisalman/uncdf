@@ -20,16 +20,16 @@ class transactionController extends Controller
      */
     public function index()
     {
-/*        $districts = DB::table("onboard_mms")
-        ->join('districts', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
-        ->where('onboard_mms.id_onboard_mm', '=', 45)
-        ->where('is_order_completed',1)
-        ->count();*/
+        /*        $districts = DB::table("onboard_mms")
+                ->join('districts', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
+                ->where('onboard_mms.id_onboard_mm', '=', 45)
+                ->where('is_order_completed',1)
+                ->count();*/
 
         $districts = DB::table("transactions")
             ->join('onboard_mms', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
             ->where('onboard_mms.district_id', '=', 45)
-            ->where('transactions.is_order_completed',1)
+            ->where('transactions.is_order_completed', 1)
             ->count();
         return $districts;
 
@@ -53,7 +53,7 @@ class transactionController extends Controller
             ->distinct()
             ->get();
 
-/*        total transaction number calculation*/
+        /*        total transaction number calculation*/
         $total_transaction = DB::table('transactions')
             ->count();
 
@@ -68,7 +68,7 @@ class transactionController extends Controller
             ->sum('amount');
 
 
-        return view('transaction.create', compact('total_transaction_value','total_successful_transaction','total_transaction','av_districts', 'divisions', 'districts', 'upazilas', 'unions'));
+        return view('transaction.create', compact('total_transaction_value', 'total_successful_transaction', 'total_transaction', 'av_districts', 'divisions', 'districts', 'upazilas', 'unions'));
     }
 
 
@@ -86,7 +86,7 @@ class transactionController extends Controller
 
     public function numberOfTrans($id)
     {
-        $districts=[];
+        $districts = [];
 
         $districts['number_of_trans'] = DB::table("transactions")
             ->join('onboard_mms', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
@@ -97,13 +97,13 @@ class transactionController extends Controller
         $districts['number_of_successfull_trans'] = DB::table("transactions")
             ->join('onboard_mms', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
             ->where('onboard_mms.district_id', '=', $id)
-            ->where('transactions.is_order_completed',1)
+            ->where('transactions.is_order_completed', 1)
             ->count();
 
         $districts['total_amount_of_trans'] = DB::table("transactions")
             ->join('onboard_mms', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
             ->where('onboard_mms.district_id', '=', $id)
-            ->where('transactions.is_order_completed',1)
+            ->where('transactions.is_order_completed', 1)
             ->sum('amount');
 
         return json_encode($districts);
@@ -114,7 +114,7 @@ class transactionController extends Controller
         $districts = DB::table("transactions")
             ->join('onboard_mms', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
             ->where('onboard_mms.district_id', '=', $id)
-            ->where('transactions.is_order_completed',1)
+            ->where('transactions.is_order_completed', 1)
             ->count();
         return json_encode($districts);
     }
@@ -124,7 +124,7 @@ class transactionController extends Controller
         $districts = DB::table("transactions")
             ->join('onboard_mms', 'onboard_mms.id_onboard_mm', '=', 'transactions.id_onboard_mm')
             ->where('onboard_mms.district_id', '=', $id)
-            ->where('transactions.is_order_completed',1)
+            ->where('transactions.is_order_completed', 1)
             ->sum('amount');
         return json_encode($districts);
     }
